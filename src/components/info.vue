@@ -8,8 +8,14 @@
       <li>PHP</li>
       <li>Python</li>
     </ul>
-    <p v-show="mostrar_email">Mande uma mensagem para: {{  email  }}</p>
-    <p>Para acessar meu portfolio basta  <a v-bind:href="meu_link" target="_blank">clicar aqui</a></p>
+    <div>
+      <button @click="showEmail">{{ textoBotaoEmail }}</button>
+    </div>
+    <p v-show="mostrar_email">Mande uma mensagem para: {{ email }}</p>
+    <div>
+      <button @click="showLink">{{ textoBotao }}</button>
+    </div>
+    <p v-show="mostrar_link">Para acessar meu portfolio basta  <a v-bind:href="meu_link" target="_blank">clicar aqui</a></p>
     <Picture />
   </div>
 </template>
@@ -27,7 +33,28 @@
         esta_trabalhando: true,
         mostrar_email: false,
         email: 'leonardo.rendano@email.com',
-        meu_link: 'https:google.com'
+        meu_link: 'https:google.com',
+        mostrar_link: false,
+        textoBotao: 'Mostrar link do portfolio',
+        textoBotaoEmail: 'Mostrar email'
+      }
+    },
+    methods: {
+      showEmail() {
+        if (!this.mostrar_email) {
+          this.textoBotaoEmail = 'Ocultar email'
+        } else {
+          this.textoBotaoEmail = 'Mostrar email'
+        }
+        this.mostrar_email = !this.mostrar_email
+      },
+      showLink() {
+        if (!this.mostrar_link) {
+          this.textoBotao = 'Ocultar link do portfolio'
+        } else {
+          this.textoBotao = 'Mostrar link do portfolio'
+        }
+        this.mostrar_link = !this.mostrar_link
       }
     }
   }
